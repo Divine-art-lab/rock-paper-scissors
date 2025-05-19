@@ -2,14 +2,13 @@
   --bg: #26006E;
   --color: #ddd;
 }
-@import url("https://fonts.googleapis.com/css?family=Poppins");
 * {
   box-sizing: border-box;
 }
 body {
   background-color: var(--bg);
   color: var(--color);
-  font-family: Poppins, Arial, Helvetica, sans-serif;
+  font-family: 'Poppins', Arial, Helvetica, sans-serif;
   margin: 0;
   padding: 0;
 }
@@ -37,7 +36,7 @@ main {
   display: flex;
   justify-content: space-evenly;
 }
-main .Rock, .Paper, .Scissors {
+main .rock, .paper, .scissors {
   background-image: url("/b55d0cf2-ef94-4ff8-948f-fdc8448123b7.png");
   border: 2px solid var(--color);
   background-size: 350px;
@@ -47,12 +46,21 @@ main .Rock, .Paper, .Scissors {
   overflow: hidden;
 
 }
-main .Rock {
+main .rock {
   background-position: -3px -67px;
 }
-main .Paper {
+main .paper {
  background-position: -450px -61px;
 }
-main .Scissors {
+main .scissors {
   background-position: -900px -56px;
+}
+.compChoice {
+  font-size: 20px;
+  padding: 3px;
+}
+footer {
+  position: relative;
+  top: 190%;
+  text-align: center;
 }

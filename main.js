@@ -1,80 +1,109 @@
-//date
-function setDate() {
-  let date = new Date().toLocaleString('default', { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' });
-  document.getElementById('date').textContent = date;
+//Date and Time
+function date_time() {
+  let date = new Date();
+  let formattedDate = date.toLocaleString('default', {
+    month: 'short',
+    date: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric'
+  });
+  document.getElementById('date').innerHTML = formattedDate;
 }
-setInterval(setDate, 1000);
-//scores 
-let playerScore = 0;
-let computerScore = 0;
-//Results 
-let win = "You WIN🎉!!!";
-let lose = "You Lose😔";
-//computerChoice
-let computerOutput = ["Rock", "Paper", "Scissors"];
-function compRndmChoice() {
-  const index = Math.floor(Math.random() * computerOutput.length);
-  return computerOutput[index];
+setInterval(date_time, 1000);
+
+//player and computers scores 
+playerScore = 0;
+compScore = 0;
+
+let playerScore_Element = document.createElement('h1');
+playerScore_Element.textContent = playerScore;
+
+let compScore_Element = document.createElement('h1');
+compScore_Element.textContent = compScore;
+
+document.querySelector('.player').append(playerScore_Element);
+document.querySelector('.computer').append(compScore_Element);
+//results 
+let win, lose;
+win = "You WIN🎉!!!, Computer lose😂";
+lose = "You lost😔, computer win";
+
+
+//set output 
+let output = document.getElementById('results');
+output.textContent = '';
+//choice or games.
+//For computer
+compGames = ["Rock", "Paper", "Scissors"];
+let compRndmChoice = () => {
+  let index = Math.floor(Math.random() * compGames.length);
+  return compGames[index];
 }
-//playerChoice
-let userOutput = ["Rock", "Paper", "Scissors"];
+//for user/player
+//create variables and element 
 let Rock, Paper, Scissors;
-Rock = document.createElement("div");
-Paper = document.createElement("div");
-Scissors = document.createElement("div");
+Rock = document.createElement('div');
+Paper = document.createElement('div');
+Scissors = document.createElement('div');
 
-Rock.classList.add('Rock');
-Paper.classList.add('Paper');
-Scissors.classList.add('Scissors');
+//give them class name for styling
+Rock.classList.add('rock');
+Paper.classList.add('paper');
+Scissors.classList.add('scissors');
 
-let parentElement = document.querySelector("main");
-parentElement.append(Rock, Paper, Scissors);
-let score = document.createElement("h1");
-score.textContent = playerScore;
-let score2 = document.createElement("h1");
-score2.textContent = computerScore;
-document.querySelector(".player").appendChild(score); 
-document.querySelector(".computer").appendChild(score2); 
+//add them to HTML 
+let gamesBox = document.querySelector('main');
+gamesBox.append(Rock, Paper, Scissors);
 
-
+//their functions 
 Rock.onclick = () => {
-  confirmGame("Rock");
-}
-Paper.onclick = ()  => {
-  confirmGame("Paper");
-}
+  confirmGames('Rock');
+};
+Paper.onclick = () => {
+    confirmGames('Paper');
+};
 Scissors.onclick = () => {
-  confirmGame("Scissors");
-  console.log(playerChoice)
-}
+    confirmGames('Scissors');
+};
 
-
-let output = document.getElementById("results");
-
-//conditional statements 
-function confirmGame(playerChoice) {
-  let computerChoice = compRndmChoice();
-  if (computerChoice == playerChoice) {
+//function to confirmGames 
+function confirmGames(playerChioce) {
+  let compChoice = compRndmChoice();
+  if (compChoice === playerChioce) {
     output.textContent = "Draw";
   }
-  else if (computerChoice == "Rock" && playerChoice == "Paper" || computerChoice == "Paper" && playerChoice == "Scissors" || computerChoice == "Scissors" && playerChoice == "Rock") {
+  else if (compChoice == 'Rock' && playerChioce == 'Paper' || compChoice == 'Paper' && playerChioce == 'Scissors' || compChoice == 'Scissors' && playerChioce == 'Rock') {
     output.textContent = win;
     playerScore++;
-  } else {
+  }
+  else {
     output.textContent = lose;
-    computerScore++;
-    
+    compScore++;
   }
   
+  compScore_Element.textContent = compScore;
+  playerScore_Element.textContent = playerScore;
+
   if (output.textContent == win) {
-    output.style.color = "green";
+    output.style.color = 'green';
   }
-  else if (output.textContent == "Draw") {
-    output.style.color = "blue";
-  } else {
-    output.style.color = "red";
+  else if (output.textContent == lose) {
+    output.style.color = 'red';
+  }
+  else {
+    output.style.color = 'blue';
   }
   
-  score.textContent = playerScore;
-  score2.textContent = computerScore;
+  
+  let display_compChoice = document.querySelector('.compChoice');
+  if (compChoice == 'Rock') {
+    display_compChoice.textContent = 'Computer: ✊';
+  }
+  else if (compChoice == 'Paper') {
+    display_compChoice.textContent = 'Computer: 🖐️';
+  } 
+  else {
+    display_compChoice.textContent = 'Computer: ✌️';
+  }
 }
