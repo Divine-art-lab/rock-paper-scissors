@@ -86,13 +86,13 @@ function confirmGames(playerChioce) {
   playerScore_Element.textContent = playerScore;
 
   if (output.textContent == win) {
-    output.style.color = 'green';
+    output.style.color = 'lightgreen';
   }
   else if (output.textContent == lose) {
-    output.style.color = 'red';
+    output.style.color = '#F74848';
   }
   else {
-    output.style.color = 'blue';
+    output.style.color = 'lightblue';
   }
   
   
